@@ -1,0 +1,34 @@
+Istruzioni : http://appinventor.mit.edu/explore/ai2/custom-tinywebdb.html
+Link download GAE for Python: https://cloud.google.com/appengine/downloads
+Link download Python 2.7: https://www.python.org/downloads/ 
+
+app.yaml da modificare:
+
+application: aitinywebdbtest <- Questo è il nome che si vede in Project ID nella GAE Dashboard
+version: 1
+runtime: python27 
+threadsafe: true 
+api_version: 1
+
+libraries:        
+- name: django
+  version: "1.2"
+
+handlers:
+- url: /images
+  static_dir: images
+
+- url: .*
+  script: main.py
+  
+Nel mio caso ho creato un app in GAE chiamata
+AITinyWebDBTest - Project ID: aitinywebdbtest
+SeblogAppsTinyWebDB - Project ID: seblogappstinywebdb-994
+
+Dopo che ho fatto il deploy la trovo all'indirizzo:
+http://aitinywebdbtest.appspot.com/
+http://seblogappstinywebdb-994.appspot.com/
+
+Per vedere i dati salvati ho due metodi:
+1) http://aitinywebdbtest.appspot.com/ per eseguire metodi /storeavalue e /getvalue
+2) https://console.developers.google.com del progetto e scegliere "Storage - Cloud Datastore - Query" così vedo tutti gli indici salvati 
